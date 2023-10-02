@@ -1,21 +1,28 @@
 package com.safonov_iv.roelredit.Cursor.Layer;
 
 import com.safonov_iv.roelredit.Common.DefaultValue;
+import lombok.Getter;
 
 public class GridSetting {
+    @Getter
     private final int capacity = 1000;
-    private final int MARGIN = 2;
+    @Getter
     private final float size;
-    private float sizeMargin;
+    private final float sizeMargin;
+    @Getter
     private float height;
+    @Getter
     private float nextX;
+    @Getter
     private float nextY;
+    @Getter
     private final GridType grid;
 
 
     public GridSetting(GridType grid) {
         this.grid = grid;
         this.size = DefaultValue.DEFAULT_FIELD_SIZE;
+        int MARGIN = 2;
         sizeMargin = DefaultValue.DEFAULT_FIELD_SIZE + MARGIN;
 
         switch (grid) {
@@ -29,38 +36,16 @@ public class GridSetting {
     }
 
     private void initializeHorizontal() {
-        height = (float) (sizeMargin * Math.cos(Math.toRadians(30))) / 2;
-        nextX = (float) (sizeMargin * Math.cos(Math.toRadians(30)));
+        double size = sizeMargin * Math.cos(Math.toRadians(30));
+        height = (float) size / 2;
+        nextX = (float) size;
         nextY = (float) (sizeMargin * 1.5);
     }
 
     private void initializeVertical() {
-        height = (float) (sizeMargin * Math.cos(Math.toRadians(30))) / 2;
+        double size = sizeMargin * Math.cos(Math.toRadians(30));
+        height = (float) size / 2;
         nextX = (float) (sizeMargin * 1.5);
-        nextY = (float) (sizeMargin * Math.cos(Math.toRadians(30)));
-    }
-
-    public float getHeight() {
-        return height;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public float getSize() {
-        return size;
-    }
-
-    public float getNextX() {
-        return nextX;
-    }
-
-    public float getNextY() {
-        return nextY;
-    }
-
-    public GridType getGrid() {
-        return grid;
+        nextY = (float) size;
     }
 }

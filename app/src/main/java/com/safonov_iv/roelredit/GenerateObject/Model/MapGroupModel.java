@@ -4,6 +4,7 @@ package com.safonov_iv.roelredit.GenerateObject.Model;
 import com.safonov_iv.roelredit.Common.DefaultValue;
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.CharacterModel;
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.CharacterProgress;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,29 +15,31 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MapGroupModel implements Serializable {
 
     private final long sequence;
+    @Getter
     private int iconId;
+    @Getter
     private final ModelGroupPersons modelGroupPersons;
 
     public MapGroupModel(int iconId, List<CharacterModel> modelGroupPersons) {
         this.modelGroupPersons = new ModelGroupPersons(modelGroupPersons);
         this.iconId = iconId;
-        this.sequence = ++MapGroupSequence.sequence;
+        this.sequence = MapGroupSequence.sequence.incrementAndGet();
     }
 
     public MapGroupModel() {
         this.iconId = DefaultValue.NO_EXIST_GROUP;
-        this.sequence = ++MapGroupSequence.sequence;
+        this.sequence=MapGroupSequence.sequence.incrementAndGet();
         this.modelGroupPersons = new ModelGroupPersons(new ArrayList<>());
     }
 
     public MapGroupModel(List<CharacterModel> modelGroupPersons) {
         this.modelGroupPersons = new ModelGroupPersons(modelGroupPersons);
         this.iconId = initIconId();
-        this.sequence = ++MapGroupSequence.sequence;
+        this.sequence=MapGroupSequence.sequence.incrementAndGet();
     }
 
     private int initIconId() {
-        if (modelGroupPersons.getPlayerPersons().size() < 1) {
+        if (modelGroupPersons.getPlayerPersons().isEmpty()) {
             return DefaultValue.NO_EXIST_GROUP;
         }
 
@@ -58,14 +61,6 @@ public class MapGroupModel implements Serializable {
             }
         });
         return curId.get();
-    }
-
-    public ModelGroupPersons getModelGroupPersons() {
-        return modelGroupPersons;
-    }
-
-    public int getIconId() {
-        return iconId;
     }
 
     @Override

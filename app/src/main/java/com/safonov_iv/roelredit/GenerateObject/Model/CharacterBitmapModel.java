@@ -5,6 +5,7 @@ package com.safonov_iv.roelredit.GenerateObject.Model;
 import com.safonov_iv.roelredit.R;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class CharacterBitmapModel {
@@ -20,7 +21,7 @@ public class CharacterBitmapModel {
         characterBitmaps.put("LightMage", new ModelProperties(R.drawable.character_girl_mage_002, 3004, 1, 2));
     }
 
-    public static CharacterBitmapModel getCharacterBitmapModel() {
+    public static synchronized CharacterBitmapModel getInstance() {
         if(characterBitmapModel==null){
             characterBitmapModel=new CharacterBitmapModel();
         }
@@ -28,12 +29,12 @@ public class CharacterBitmapModel {
     }
 
     public Integer getBitmapId(String key) {
-        return characterBitmaps.get(key).getId_bitmap();
+        return Objects.requireNonNull(characterBitmaps.get(key)).getId_bitmap();
     }
 
 
     public Integer getId(String key) {
-        return characterBitmaps.get(key).getId();
+        return Objects.requireNonNull(characterBitmaps.get(key)).getId();
     }
 
 

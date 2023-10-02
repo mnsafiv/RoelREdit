@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import com.safonov_iv.roelredit.GenerateObject.Component.CharacterMap;
-import com.safonov_iv.roelredit.GenerateObject.GenerateObjectAccess;
 
 public class StructureBitmap extends ActionOnClickImpl {
 
@@ -23,7 +22,7 @@ public class StructureBitmap extends ActionOnClickImpl {
     }
 
     public StructureBitmap(int sourceId, int height) {
-        bitmap = GenerateObjectAccess.characterMap.getBitmapById(sourceId);
+        bitmap = CharacterMap.getInstance().getBitmapById(sourceId);
         calculate(height);
     }
 

@@ -4,6 +4,7 @@ package com.safonov_iv.roelredit.Cursor.Layer;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import com.safonov_iv.roelredit.Common.Setting;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class FieldSetting {
 
@@ -55,8 +56,8 @@ public abstract class FieldSetting {
         return gridSetting.getSize() / 2;
     }
 
-    public PointF getCoordinateStartBitmap(Bitmap bitmap, int coordinate) {
-        return new PointF(getCenterAreaPositionX(coordinate)-bitmap.getWidth()/2,
-                getCenterAreaPositionY(coordinate)-bitmap.getHeight()/2);
+    public PointF getCoordinateStartBitmap(@NotNull Bitmap bitmap, int coordinate) {
+        return new PointF(getCenterAreaPositionX(coordinate)- (float) bitmap.getWidth() /2,
+                getCenterAreaPositionY(coordinate)- (float) bitmap.getHeight() /2);
     }
 }

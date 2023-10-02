@@ -1,11 +1,14 @@
 package com.safonov_iv.roelredit.GenerateObject.Component;
 
+import lombok.Getter;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
 public class BitmapConfig {
-    private Set<String> keys;
-    private String key;
+    private final Set<String> keys;
+    private final String key;
 
     public BitmapConfig(String key) {
         this.key = key;
@@ -14,13 +17,5 @@ public class BitmapConfig {
 
     public void addKey(String key){
         keys.add(key);
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public Set<String> getKeys() {
-        return keys;
     }
 }

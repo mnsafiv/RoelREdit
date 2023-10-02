@@ -1,6 +1,5 @@
 package com.safonov_iv.roelredit.GenerateObject.Component;
 
-import com.safonov_iv.roelredit.GenerateObject.GenerateObjectAccess;
 import com.safonov_iv.roelredit.GenerateObject.Model.MapGroupModel;
 import com.safonov_iv.roelredit.Map.Coordinate.Enum.BattleMapType;
 import com.safonov_iv.roelredit.Map.Coordinate.Enum.MapType;
@@ -9,12 +8,11 @@ import com.safonov_iv.roelredit.Map.Coordinate.MapValue;
 import com.safonov_iv.roelredit.Common.Setting;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class MapComponent {
 
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     public static Map<Integer, MapValue> getMap(MapType mapType, Setting setting) {
         int sizeAreaX = 10;
@@ -63,7 +61,7 @@ public class MapComponent {
     }
 
     private static String getRandomBackGround(BitmapConfig bitmapConfig) {
-        final List<String> collect = bitmapConfig.getKeys().stream().collect(Collectors.toList());
+        final List<String> collect = new ArrayList<>(bitmapConfig.getKeys());
         return collect.get(random.nextInt(collect.size()));
     }
 
@@ -73,17 +71,17 @@ public class MapComponent {
         Random random = new Random();
         int vectorX = random.nextInt(size / 3) - size / 6;
         int vectorY = random.nextInt(size / 3) - size / 6;
-        final Map<String, BitmapConfig> map = GenerateObjectAccess.prototypeDecor.getKeys();
-        final List<String> keys = GenerateObjectAccess.prototypeDecor.getKeys().entrySet().stream().map(t -> t.getKey()).collect(Collectors.toList());
+        final Map<String, BitmapConfig> map = PrototypeDecor.getInstance().getKeys();
+        final List<String> keys = new ArrayList<>(PrototypeDecor.getInstance().getKeys().keySet());
         final String key = keys.get(random.nextInt(keys.size()));
-        final List<String> iconsKey = map.get(key).getKeys().stream().collect(Collectors.toList());
+        final List<String> iconsKey = new ArrayList<>(Objects.requireNonNull(map.get(key)).getKeys());
 
         return new IconCoordinate(vectorX, vectorY, 1, key, iconsKey.get(random.nextInt(iconsKey.size())), mapValue);
     }
 
     private static BitmapConfig getRandomBitmapConfig() {
-        final Map<String, BitmapConfig> map = GenerateObjectAccess.prototypeGrid.getKeys();
-        final List<String> collect = map.entrySet().stream().map(t -> t.getKey()).collect(Collectors.toList());
+        final Map<String, BitmapConfig> map = PrototypeGrid.getInstance().getKeys();
+        final List<String> collect = new ArrayList<>(map.keySet());
         final String key = collect.get(random.nextInt(collect.size()));
         return map.get(key);
     }

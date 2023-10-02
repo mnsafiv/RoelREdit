@@ -22,7 +22,7 @@ public class FieldRemove extends PanelEditProperties {
 
     @Override
     public boolean getAction(MapPrototype map) {
-        final CursorPosition cursor = Setting.getSetting().getCamera().getCursor();
+        final CursorPosition cursor = Setting.getInstance().getCamera().getCursor();
         if (cursor.getCursorCoordinate() > -1) {
             map.getMapValues().remove(cursor.getCursorCoordinate());
             return true;

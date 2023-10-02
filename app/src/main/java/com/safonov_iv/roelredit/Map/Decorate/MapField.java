@@ -3,34 +3,32 @@ package com.safonov_iv.roelredit.Map.Decorate;
 import android.graphics.Canvas;
 import com.safonov_iv.roelredit.Cursor.Display.Camera;
 import com.safonov_iv.roelredit.Cursor.Layer.FieldSetting;
+import com.safonov_iv.roelredit.Cursor.Layer.GridDraw;
 import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Map.Coordinate.MapValue;
 import com.safonov_iv.roelredit.Common.Setting;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class MapField implements FieldPrototype {
-
-
-    private final FieldSetting setting;
+    private final FieldSetting fieldSetting;
     private final Camera camera;
     private final MapPrototype mapPrototype;
+    private final GridDraw grid;
 
 
-
-    public MapField(@NotNull Setting setting, MapPrototype mapPrototype) {
-        this.setting = setting.getFieldSetting();
-
-        camera = setting.getCamera();
+    public MapField(MapPrototype mapPrototype) {
+        this.fieldSetting = Setting.getInstance().getFieldSetting();
+        this.camera = Setting.getInstance().getCamera();
+        this.grid = Setting.getInstance().getGrid();
         this.mapPrototype = mapPrototype;
     }
 
     @Override
     public void draw(Canvas canvas) {
         mapPrototype.getMapValues().forEach((key, value) ->
-                value.drawGrid(canvas,camera, mapPrototype.getGrid(), mapPrototype.getSetting()));
+                value.drawGrid(canvas, grid, fieldSetting));
 
         mapPrototype.getMapValues().forEach((key, value) ->
                 value.drawDecorate(canvas,camera));
@@ -57,7 +55,7 @@ public class MapField implements FieldPrototype {
 
     @Override
     public int getCoordinate(int areaX, int areaY) {
-        return setting.getCoordinate(areaX, areaY);
+        return fieldSetting.getCoordinate(areaX, areaY);
     }
 
 

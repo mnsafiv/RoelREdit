@@ -1,6 +1,7 @@
 package com.safonov_iv.roelredit.Cursor.Display;
 
 import com.safonov_iv.roelredit.Cursor.Layer.FieldSetting;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,13 +13,19 @@ public class CursorPosition {
 
     private final Map<Integer, CursorCounter> counter = new HashMap<>();
 
+    @Getter
     private int activeCursorX = -1;
+    @Getter
     private int activeCursorY = -1;
 
+    @Getter
     private int cursorPositionX = -1;
+    @Getter
     private int cursorPositionY = -1;
 
+    @Getter
     private int cursorCoordinate = -1;
+    @Getter
     private int controlNumber = -1;
 
     public CursorPosition(Camera camera, FieldSetting setting) {
@@ -26,19 +33,6 @@ public class CursorPosition {
         this.setting = setting;
     }
 
-
-    public int getActiveCursorX() {
-        return activeCursorX;
-    }
-
-    public int getActiveCursorY() {
-        return activeCursorY;
-    }
-
-
-    public int getCursorCoordinate() {
-        return cursorCoordinate;
-    }
 
     public void setActiveCursor(float positionX, float positionY) {
         this.activeCursorX = (int) positionX;
@@ -73,19 +67,9 @@ public class CursorPosition {
         counter.remove(cursorCounter);
 
 
+
     }
 
-    public int getCursorPositionX() {
-        return cursorPositionX;
-    }
-
-    public int getCursorPositionY() {
-        return cursorPositionY;
-    }
-
-    public int getControlNumber() {
-        return controlNumber;
-    }
 
     public void addCursor(int index, float positionX, float positionY) {
         counter.put(index, new CursorCounter(positionX, positionY));

@@ -12,7 +12,7 @@ import com.safonov_iv.roelredit.EditMap.ClickOnStatus.RectItem.ActionOnClickImpl
 import com.safonov_iv.roelredit.EditMap.ClickOnStatus.StatusModelItem;
 import com.safonov_iv.roelredit.EditMap.ClickOnStatus.PanelInt;
 import com.safonov_iv.roelredit.EditMap.ClickOnStatus.StatusModelItemCharacterAdd;
-import com.safonov_iv.roelredit.GenerateObject.GenerateObjectAccess;
+import com.safonov_iv.roelredit.GenerateObject.Model.CharacterBitmapModel;
 import com.safonov_iv.roelredit.GenerateObject.Model.ModelProperties;
 import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Map.Coordinate.MapValue;
@@ -34,12 +34,12 @@ public class AddGroupMapValue implements PanelInt {
         this.context = context;
         this.mapValue = mapValue;
         this.editGroupMapValue = editGroupMapValue;
-        this.characterBitmaps = GenerateObjectAccess.characterBitmapModel.getCharacterBitmaps();
+        this.characterBitmaps = CharacterBitmapModel.getInstance().getCharacterBitmaps();
 
         paintBorderInfo = new Paint();
         paintBorderInfo.setColor(ContextCompat.getColor(context, R.color.ColorBorderStatus));
         paintStatusInfo = new Paint();
-        paintStatusInfo.setTextSize(Setting.getSetting().getCurrentWidth() / 100 * 2);
+        paintStatusInfo.setTextSize((float) Setting.getInstance().getCurrentWidth() / 100 * 2);
         paintStatusInfo.setColor(ContextCompat.getColor(context, R.color.ColorTextStatus));
 
         statusModelCharacterAdd = new StatusModelItemCharacterAdd(context, DefaultValue.addPanel.ROW_NUMBER_CHARACTER_ADD);
@@ -54,8 +54,8 @@ public class AddGroupMapValue implements PanelInt {
 
         statusModelCharacterAdd.reset();
 
-        int screenX = Setting.getSetting().getCurrentWidth();
-        int screenY = Setting.getSetting().getCurrentHeight();
+        int screenX = Setting.getInstance().getCurrentWidth();
+        int screenY = Setting.getInstance().getCurrentHeight();
 
         int rectWidth = (int) (screenX * DefaultValue.addPanel.ROW_MULTIPLIER_SIZE_WIDTH_CHARACTER_ADD);
         int rectHeight = (int) (screenY * DefaultValue.addPanel.ROW_MULTIPLIER_SIZE_HEIGHT_CHARACTER_ADD);

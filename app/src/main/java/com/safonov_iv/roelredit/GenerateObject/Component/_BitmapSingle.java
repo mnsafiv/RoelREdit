@@ -4,13 +4,13 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class BitmapSingle extends BitmapComponent {
+public class _BitmapSingle extends BitmapComponent {
 
     private Bitmap bitmap;
     private int distance = 0;
 
 
-    public BitmapSingle(Context context, int bitmapId) {
+    public _BitmapSingle(Context context, int bitmapId) {
         super(context, bitmapId);
         this.bitmap = BitmapFactory.decodeResource(context.getResources(), bitmapId);
     }

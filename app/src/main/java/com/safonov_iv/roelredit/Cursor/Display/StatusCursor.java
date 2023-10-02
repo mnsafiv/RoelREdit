@@ -37,8 +37,8 @@ public class StatusCursor {
 
 
     public void draw(Canvas canvas) {
-        final int heightPixels = Setting.getSetting().getCurrentHeight();
-        final int widthPixels = Setting.getSetting().getCurrentWidth();
+        final int heightPixels = Setting.getInstance().getCurrentHeight();
+        final int widthPixels = Setting.getInstance().getCurrentWidth();
 
         int x = widthPixels / 10 * 8;
         int y = heightPixels / 7 * 5;

@@ -4,14 +4,19 @@ package com.safonov_iv.roelredit.Common;
 import android.graphics.Rect;
 import com.safonov_iv.roelredit.Cursor.Display.Camera;
 import com.safonov_iv.roelredit.Cursor.Layer.*;
+import lombok.Getter;
 
 public class Setting {
 
     private static volatile Setting setting;
-    private final Camera camera;
+    @Getter
     private final GridDraw grid;
+    @Getter
     private final FieldSetting fieldSetting;
+    @Getter
     private final GridSetting gridSetting;
+    @Getter
+    private final Camera camera;
     private Rect displayBounds;
 
 
@@ -25,36 +30,18 @@ public class Setting {
         }
 
 
-        this.camera = Camera.getCamera(this);
+        this.camera = Camera.getInstance(this);
         this.grid = new HexGrid(DefaultValue.DEFAULT_FIELD_SIZE / 2, gridType, camera);
 
 
     }
 
 
-    public static Setting getSetting() {
+    public static Setting getInstance() {
         if (setting == null) {
             setting = new Setting(DefaultValue.GRID_TYPE);
         }
         return setting;
-    }
-
-    public GridDraw getGrid() {
-        return grid;
-    }
-
-    public FieldSetting getFieldSetting() {
-        return fieldSetting;
-    }
-
-
-    public GridSetting getGridSetting() {
-        return gridSetting;
-    }
-
-
-    public Camera getCamera() {
-        return camera;
     }
 
     public void setDisplayBounds(Rect bounds) {

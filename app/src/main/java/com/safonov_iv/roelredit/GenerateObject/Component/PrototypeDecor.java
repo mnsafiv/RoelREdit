@@ -1,8 +1,8 @@
 package com.safonov_iv.roelredit.GenerateObject.Component;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import com.safonov_iv.roelredit.MainActivity;
 import com.safonov_iv.roelredit.R;
 
 import java.util.*;
@@ -11,8 +11,8 @@ public class PrototypeDecor extends Prototype{
     private volatile static PrototypeDecor prototypeDecor;
 
 
-    private PrototypeDecor(Context context) {
-        super(context);
+    private PrototypeDecor() {
+        super();
         bitmaps = new HashMap<>();
         keys = new HashMap<>();
 
@@ -23,15 +23,16 @@ public class PrototypeDecor extends Prototype{
     }
 
 
-    public static synchronized PrototypeDecor getPrototypeDecor(Context context) {
+    public static synchronized PrototypeDecor getInstance() {
+
         if(prototypeDecor==null){
-            prototypeDecor=new PrototypeDecor(context);
+            prototypeDecor=new PrototypeDecor();
         }
         return prototypeDecor;
     }
 
     private void initBitmapsValue(int id, String key, int rowNumber, int rowMax, int distance) {
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), id);
+        Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.getContext().getResources(), id);
         int height = bitmap.getHeight() / rowMax;
         int width = bitmap.getWidth() / rowNumber;
 
@@ -39,7 +40,7 @@ public class PrototypeDecor extends Prototype{
 
         for (int i = 0; i < rowNumber * rowMax; i++) {
             String newKey = key + "_" + (i + 1);
-            bitmaps.put(newKey, new BitmapMulti(context, id, width * (i % rowNumber), height * (i / rowNumber), width, height, distance));
+            bitmaps.put(newKey, new BitmapMulti(MainActivity.getContext(), id, width * (i % rowNumber), height * (i / rowNumber), width, height, distance));
             bitmapConfig.addKey(newKey);
 
         }
@@ -50,7 +51,7 @@ public class PrototypeDecor extends Prototype{
 
 
     public Bitmap getBackGroundBitmap(String item, double resolution) {
-        final Bitmap bitmap = bitmaps.get(item).getBitmap();
+        final Bitmap bitmap = Objects.requireNonNull(bitmaps.get(item)).getBitmap();
         System.out.println();
         return Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * resolution), (int) (bitmap.getHeight() * resolution), false);
     }

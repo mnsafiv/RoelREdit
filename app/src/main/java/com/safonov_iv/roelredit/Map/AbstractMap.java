@@ -28,7 +28,7 @@ public abstract class AbstractMap extends SurfaceView implements SurfaceHolder.C
 
     public AbstractMap(Context context) {
         super(context);
-        this.setting = Setting.getSetting();
+        this.setting = Setting.getInstance();
         this.cursor = setting.getCamera().getCursor();
         this.camera = setting.getCamera();
         SurfaceHolder surfaceHolder = getHolder();

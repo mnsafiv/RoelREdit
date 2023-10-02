@@ -3,13 +3,18 @@ package com.safonov_iv.roelredit.Map.Coordinate;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.safonov_iv.roelredit.GenerateObject.Bonus.BonusPrototype;
 import com.safonov_iv.roelredit.GenerateObject.Bonus.BonusType;
 import com.safonov_iv.roelredit.Common.Utils;
 import com.safonov_iv.roelredit.Cursor.Display.Camera;
-import com.safonov_iv.roelredit.GenerateObject.GenerateObjectAccess;
+import com.safonov_iv.roelredit.GenerateObject.Component.PrototypeDecor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Map;
 
+@Getter
+@Setter
 public class IconCoordinate implements Bonus {
     private Long id;
     private double positionX;
@@ -36,7 +41,7 @@ public class IconCoordinate implements Bonus {
         this.positionY = positionY;
         this.resolution = resolution;
         this.iconType = iconType;
-        this.bonus= GenerateObjectAccess.bonusPrototype.getBonus(key).getBonusItems();
+        this.bonus= BonusPrototype.getInstance().getBonus(key).getBonusItems();
 
         this.mapValueOwner = mapValueOwner;
     }
@@ -44,7 +49,7 @@ public class IconCoordinate implements Bonus {
 
     public void draw(Canvas canvas, Camera camera) {
 
-        Bitmap bitmap = GenerateObjectAccess.prototypeDecor.getBackGroundBitmap(iconType, resolution);
+        Bitmap bitmap = PrototypeDecor.getInstance().getBackGroundBitmap(iconType, resolution);
 
         if (alpha != -1) {
             bitmap = Utils.changeColor(bitmap, alpha);
@@ -55,36 +60,6 @@ public class IconCoordinate implements Bonus {
                 (float) camera.getCenterBitmapToCameraX(bitmap, mapValueOwner.getCenterX() + positionX),
                 (float) camera.getCenterBitmapToCameraY(bitmap, mapValueOwner.getCenterY() + positionY),
                 null);
-    }
-
-
-    public double getPositionX() {
-        return positionX;
-    }
-
-    public void setPositionX(double positionX) {
-        this.positionX = positionX;
-    }
-
-    public double getPositionY() {
-        return positionY;
-    }
-
-    public void setPositionY(double positionY) {
-        this.positionY = positionY;
-    }
-    
-
-    public void setMapValueOwner(MapValue mapValueOwner) {
-        this.mapValueOwner = mapValueOwner;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setAlpha(byte alpha) {

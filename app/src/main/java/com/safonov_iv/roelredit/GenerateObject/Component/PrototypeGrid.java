@@ -1,26 +1,28 @@
 package com.safonov_iv.roelredit.GenerateObject.Component;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import com.safonov_iv.roelredit.Common.DefaultValue;
+import com.safonov_iv.roelredit.MainActivity;
 import com.safonov_iv.roelredit.R;
 import com.safonov_iv.roelredit.Common.Setting;
 
 import java.util.*;
 
 public class PrototypeGrid extends Prototype {
+    @SuppressLint("StaticFieldLeak")
     private static volatile PrototypeGrid prototypeGrid;
-    private Path path;
+    private final Path path;
 
 
-    public PrototypeGrid(Context context) {
-        super(context);
+    public PrototypeGrid() {
+        super();
         bitmaps = new HashMap<>();
         keys = new HashMap<>();
-        path = Setting.getSetting().getGrid().getPath();
+        path = Setting.getInstance().getGrid().getPath();
 
         initBitmapsValue(R.drawable.floor_001_6_4, "floor_001_6_4", 6, 4, 1);
         initBitmapsValue(R.drawable.water_001_6_4, "water_001_6_4", 6, 4, Integer.MAX_VALUE);
@@ -30,16 +32,16 @@ public class PrototypeGrid extends Prototype {
 
     }
 
-    public static PrototypeGrid getPrototypeGrid(Context context) {
+    public static PrototypeGrid getInstance() {
         if (prototypeGrid == null) {
-            prototypeGrid = new PrototypeGrid(context);
+            prototypeGrid = new PrototypeGrid();
         }
         return prototypeGrid;
     }
 
 
     private void initBitmapsValue(int id, String key, int rowNumber, int rowMax, int distance) {
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), id);
+        Bitmap bitmap = BitmapFactory.decodeResource(MainActivity.getContext().getResources(), id);
 
 
         int height = bitmap.getHeight() / rowMax;
@@ -48,12 +50,9 @@ public class PrototypeGrid extends Prototype {
 
         BitmapConfig bitmapConfig = new BitmapConfig(key);
 
-        Set<String> subKeys = new HashSet<>();
-
         for (int i = 0; i < rowNumber * rowMax; i++) {
             String newKey = key + "_" + (i + 1);
-            bitmaps.put(newKey, new BitmapMulti(context, id, width * (i % rowNumber), height * (i / rowNumber), width, height, distance));
-            subKeys.add(newKey);
+            bitmaps.put(newKey, new BitmapMulti(MainActivity.getContext(), id, width * (i % rowNumber), height * (i / rowNumber), width, height, distance));
             bitmapConfig.addKey(newKey);
 
 

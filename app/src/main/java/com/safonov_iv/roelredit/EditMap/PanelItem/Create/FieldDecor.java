@@ -21,7 +21,7 @@ public class FieldDecor extends PanelEditProperties {
         this.resolution = resolution;
         this.bitmap=bitmapComponent.getCopyOriginalBitmap();
         this.iconType=id;
-        this.camera = Setting.getSetting().getCamera();
+        this.camera = Setting.getInstance().getCamera();
     }
 
 

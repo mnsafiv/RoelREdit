@@ -5,9 +5,22 @@ import com.safonov_iv.roelredit.Common.DefaultValue;
 import com.safonov_iv.roelredit.GenerateObject.Battle.Enum.CharacterTierType;
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.CharacterProgress;
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.CharacterPrototype;
+import org.jetbrains.annotations.NotNull;
 
 public class CalculateStats {
-    public StatsDetail getStats(CharacterPrototype stats, int level) {
+    private static CalculateStats calculateStats;
+    private CalculateStats() {
+
+    }
+
+    public static CalculateStats getInstance() {
+        if(calculateStats==null){
+            calculateStats=new CalculateStats();
+        }
+        return calculateStats;
+    }
+
+    public StatsDetail getStats(@NotNull CharacterPrototype stats, int level) {
 
         StatsDetail statsDetail = new StatsDetail();
 
@@ -171,19 +184,19 @@ public class CalculateStats {
     }
 
     private void updateProgressLevel(CharacterProgress characterProgress) {
-        int progres = getProgressMultiplier(characterProgress.getCharacterTier());
+        int progress = getProgressMultiplier(characterProgress.getCharacterTier());
         int exp = 0;
 
 
         int level = characterProgress.getLevel();
-        int toNextLevel = progres;
+        int toNextLevel = progress;
         int next;
         for (next = 0; level-- > 1; next++) {
-            toNextLevel = (int) (Math.sqrt(next * progres) + toNextLevel);
+            toNextLevel = (int) (Math.sqrt(next * progress) + toNextLevel);
             exp += toNextLevel;
         }
 
-        toNextLevel = (int) (Math.sqrt(++next * progres) + toNextLevel);
+        toNextLevel = (int) (Math.sqrt(++next * progress) + toNextLevel);
         characterProgress.setTotalExp(exp);
         characterProgress.setRequireExp(toNextLevel);
 
@@ -192,14 +205,14 @@ public class CalculateStats {
 
 
     public void updateFromExp(CharacterProgress characterProgress) {
-        int progres = getProgressMultiplier(characterProgress.getCharacterTier());
+        int progress = getProgressMultiplier(characterProgress.getCharacterTier());
         int exp = characterProgress.getTotalExp();
 
 
         int level = 0;
-        int toNextLevel = progres;
+        int toNextLevel = progress;
         for (int next = 0; exp > 0; next++) {
-            toNextLevel = (int) (Math.sqrt(next * progres) + toNextLevel);
+            toNextLevel = (int) (Math.sqrt(next * progress) + toNextLevel);
             exp -= toNextLevel;
             level++;
         }

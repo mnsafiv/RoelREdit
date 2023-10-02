@@ -41,9 +41,6 @@ public class HexHorizontal extends FieldSetting {
 
     }
 
-    public int getCoordinate(int areaX, int areaY) {
-        return areaX + areaY * gridSetting.getCapacity();
-    }
 
     private int bottomSideArea(double positionX, double positionY, int sectorAreaX, int sectorAreaY) {
         int supposedAreaX = sectorAreaX / 4;
@@ -74,9 +71,6 @@ public class HexHorizontal extends FieldSetting {
     }
 
     private int calculateCoordinate(int supposedAreaX, int supposedAreaY, double centerX, double centerY, double distance, double positionX, double positionY) {
-
-//        double vectorX = Math.abs(centerX - positionX);
-//        double vectorY = Math.abs(centerY - positionY);
 
         //control h/sin(x)
 
@@ -171,15 +165,4 @@ public class HexHorizontal extends FieldSetting {
         return areaY * gridSetting.getNextY() / 2 + gridSetting.getSize() / 2;
     }
 
-
-    @Override
-    public GridSetting getSetting() {
-        return gridSetting;
-    }
-
-
-    @Override
-    public void setSetting(GridSetting setting) {
-        this.gridSetting = setting;
-    }
 }

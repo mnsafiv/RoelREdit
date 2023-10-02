@@ -15,8 +15,8 @@ public class SaveMapIcon extends IconProperties{
 
     public SaveMapIcon(Context context, Setting setting) {
         super(setting.getCamera().getCursor());
-        positionX = Setting.getSetting().getCurrentWidth() * 7 / 10;
-        positionY = Setting.getSetting().getCurrentHeight() * 14 / 15;
+        positionX = Setting.getInstance().getCurrentWidth() * 7 / 10;
+        positionY = Setting.getInstance().getCurrentHeight() * 14 / 15;
 
 
         bitmapIcon = BitmapFactory.decodeResource(context.getResources(), R.drawable.icon_use_active_point);
@@ -25,8 +25,8 @@ public class SaveMapIcon extends IconProperties{
         bitmapRect = new Rect(0, 0, bitmapIcon.getWidth(), bitmapIcon.getHeight());
         bitmapIcon = Utils.changeColor(bitmapIcon, colorActive, 0);
 
-        positionX = Setting.getSetting().getCurrentWidth();
-        positionY = Setting.getSetting().getCurrentHeight() - bitmapIcon.getHeight()*2;
+        positionX = Setting.getInstance().getCurrentWidth();
+        positionY = Setting.getInstance().getCurrentHeight() - bitmapIcon.getHeight()*2;
 
 
 

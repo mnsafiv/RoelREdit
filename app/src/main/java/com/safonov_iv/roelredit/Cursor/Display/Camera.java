@@ -4,6 +4,7 @@ package com.safonov_iv.roelredit.Cursor.Display;
 import android.graphics.Bitmap;
 import com.safonov_iv.roelredit.Common.Utils;
 import com.safonov_iv.roelredit.Common.Setting;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -25,6 +26,7 @@ public final class Camera {
     private double positionCameraX;
     private double positionCameraY;
 
+    @Getter
     private final PanelControl panelControl;
 
 
@@ -37,7 +39,7 @@ public final class Camera {
         this.panelControl = new PanelControl();
     }
 
-    public static Camera getCamera(Setting setting) {
+    public static Camera getInstance(Setting setting) {
         if(camera==null){
             camera=new Camera(setting);
         }
@@ -137,10 +139,6 @@ public final class Camera {
         state = CameraState.isMove;
     }
 
-    public PanelControl getPanelControl() {
-        return panelControl;
-    }
-
     public void setIsUp() {
 
         state = CameraState.isUp;
@@ -164,15 +162,6 @@ public final class Camera {
     }
 
 
-    public double getDistanceDisplayToCameraX(double x) {
-        return x - positionCameraX;
-    }
-
-    public double getDistanceDisplayToCameraY(double y) {
-        return y - positionCameraY;
-    }
-
-
     public void update() {
         positionCameraX = cameraX;
         positionCameraY = cameraY;
@@ -184,11 +173,11 @@ public final class Camera {
     }
 
     public double getCenterBitmapToCameraX(@NotNull Bitmap bitmap, double centerX) {
-        return getDistanceToCameraX(centerX - bitmap.getWidth() / 2);
+        return getDistanceToCameraX(centerX - (double) bitmap.getWidth() / 2);
     }
 
     public double getCenterBitmapToCameraY(@NotNull Bitmap bitmap, double centerY) {
-        return getDistanceToCameraY(centerY - bitmap.getHeight() / 2);
+        return getDistanceToCameraY(centerY - (double) bitmap.getHeight() / 2);
     }
 
 

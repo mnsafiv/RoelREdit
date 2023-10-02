@@ -9,7 +9,6 @@ import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.CharacterModel;
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.CharacterPrototype;
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.CharacterSkill;
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.Stats;
-import com.safonov_iv.roelredit.GenerateObject.GenerateObjectAccess;
 import com.safonov_iv.roelredit.GenerateObject.Model.CharacterBitmapModel;
 import com.safonov_iv.roelredit.GenerateObject.Model.CharacterSkillArea;
 
@@ -41,7 +40,7 @@ public class PersonComponent {
         Stats baseStats = new Stats(100, 30, 20, 100);
         Stats increaseStats = new Stats(5, 7, 2, 0.01);
 
-        final CharacterBitmapModel characterBitmapModel = GenerateObjectAccess.characterBitmapModel;
+        final CharacterBitmapModel characterBitmapModel = CharacterBitmapModel.getInstance();
 
 
         Set<CharacterSkill> skillSet = new HashSet<>();
@@ -124,7 +123,7 @@ public class PersonComponent {
         //fireBall
         String key = "FireBall";
         CharacterSkill characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(1);
+        characterSkill.setSkillCostPoint(1);
         characterSkill.setMultiplier(150);
         characterSkill.setSkill_id(number++);
         characterSkill.setChargeRound(2);
@@ -140,13 +139,13 @@ public class PersonComponent {
         characterSkill.setSkillBehaviorAfterCollision(SkillBehaviorAfterCollide.destroy);
         characterSkill.setSkillMoment(SkillMoment.NoMoment);
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
         //Arrow
         key = "Arrow";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(0);
+        characterSkill.setSkillCostPoint(0);
         characterSkill.setMultiplier(50);
         characterSkill.setSkill_id(1001);
         characterSkill.setChargeRound(15);
@@ -162,13 +161,13 @@ public class PersonComponent {
         characterSkill.setSkillBehaviorAfterCollision(SkillBehaviorAfterCollide.destroy);
         characterSkill.setSkillMoment(SkillMoment.NoMoment);
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
         //momentFireball
         key = "momentFireball";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(1);
+        characterSkill.setSkillCostPoint(1);
         characterSkill.setMultiplier(50);
         characterSkill.setSkill_id(number++);
         characterSkill.setChargeRound(2);
@@ -185,13 +184,13 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.Moment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
         //archerStrike
         key = "archerStrike";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(1);
+        characterSkill.setSkillCostPoint(1);
         characterSkill.setMultiplier(20);
         characterSkill.setSkill_id(number++);
         characterSkill.setChargeRound(2);
@@ -208,14 +207,14 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.Moment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
 
         //Reverse fly fireball
         key = "ReverseFlyFireball";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(1);
+        characterSkill.setSkillCostPoint(1);
         characterSkill.setMultiplier(15);
         characterSkill.setSkill_id(number++);
         characterSkill.setChargeRound(2);
@@ -232,14 +231,14 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.NoMoment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
 
         //towerOfFire
         key = "TowerOfTower";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(3);
+        characterSkill.setSkillCostPoint(3);
         characterSkill.setMultiplier(75);
         characterSkill.setSkill_id(number++);
         characterSkill.setChargeRound(1);
@@ -256,14 +255,14 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.NoMoment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("circle"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("circle"));
         typeSkills.put(key, characterSkill);
 
 
         //Push away
         key = "PushAway";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(3);
+        characterSkill.setSkillCostPoint(3);
         characterSkill.setMultiplier(75);
         characterSkill.setSkill_id(number);
         characterSkill.setChargeRound(1);
@@ -280,7 +279,7 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.NoMoment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
 
@@ -288,7 +287,7 @@ public class PersonComponent {
         //PunchSimply
         key = "PunchSimply";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(1);
+        characterSkill.setSkillCostPoint(1);
         characterSkill.setMultiplier(75);
         characterSkill.setSkill_id(number);
         characterSkill.setChargeRound(1);
@@ -305,13 +304,13 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.Moment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
         //SuperPunchSimply
         key = "SuperPunchSimply";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(3);
+        characterSkill.setSkillCostPoint(3);
         characterSkill.setMultiplier(150);
         characterSkill.setSkill_id(number);
         characterSkill.setChargeRound(1);
@@ -328,14 +327,14 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.Moment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
 
         //PunchWarrior
         key = "PunchWarrior";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(1);
+        characterSkill.setSkillCostPoint(1);
         characterSkill.setMultiplier(75);
         characterSkill.setSkill_id(number);
         characterSkill.setChargeRound(1);
@@ -352,14 +351,14 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.Moment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
 
         //Slash
         key = "Slash";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(3);
+        characterSkill.setSkillCostPoint(3);
         characterSkill.setMultiplier(250);
         characterSkill.setSkill_id(number);
         characterSkill.setChargeRound(2);
@@ -376,7 +375,7 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.Moment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
 
@@ -384,7 +383,7 @@ public class PersonComponent {
         //ReversePunch
         key = "ReversePunch";
         characterSkill = new CharacterSkill();
-        characterSkill.setSkillCostTimes(2);
+        characterSkill.setSkillCostPoint(2);
         characterSkill.setMultiplier(100);
         characterSkill.setSkill_id(number);
         characterSkill.setChargeRound(1);
@@ -401,7 +400,7 @@ public class PersonComponent {
         characterSkill.setSkillMoment(SkillMoment.NoMoment);
 
 
-        characterSkill.setArea(CharacterSkillArea.getSkillAreas("base"));
+        characterSkill.setArea(CharacterSkillArea.getInstance().getSkillAreas("base"));
         typeSkills.put(key, characterSkill);
 
 
@@ -409,7 +408,7 @@ public class PersonComponent {
 
 
     public CharacterModel getGenerateModel(String key, int lvl) {
-        return typeCharacters.get(key).getCharacterModel(key, lvl);
+        return Objects.requireNonNull(typeCharacters.get(key)).getCharacterModel(key, lvl);
     }
 
     private CharacterSkill getSkill(String key) throws CloneNotSupportedException {

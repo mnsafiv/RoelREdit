@@ -4,7 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import com.safonov_iv.roelredit.Common.DefaultValue;
-import com.safonov_iv.roelredit.GenerateObject.GenerateObjectAccess;
+import com.safonov_iv.roelredit.GenerateObject.Model.CharacterBitmapModel;
+import com.safonov_iv.roelredit.MainActivity;
 import com.safonov_iv.roelredit.R;
 
 import java.util.HashMap;
@@ -13,7 +14,6 @@ import java.util.Map;
 public class CharacterMap {
 
     private static CharacterMap cm;
-    private static Context context;
     private final Map<Integer, Bitmap> characterMap = new HashMap<>();
     private final int maxCameraResolution = 1;
     private final int sizeImage = (int) DefaultValue.DEFAULT_FIELD_SIZE / 2;
@@ -27,7 +27,7 @@ public class CharacterMap {
         int endX = bitmap1.getWidth() / 2;
         int endY = bitmap1.getHeight();
 
-        GenerateObjectAccess.characterBitmapModel.getCharacterBitmaps().forEach((key, value) -> {
+        CharacterBitmapModel.getInstance().getCharacterBitmaps().forEach((key, value) -> {
             Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), value.getId());
             Bitmap bitmapMaxSize = Bitmap.createBitmap(bitmap, 0, 0, endX, endY);
             bitmapMaxSize = Bitmap.createScaledBitmap(bitmapMaxSize, maxCameraResolution * sizeImage, maxCameraResolution * sizeImage * sizeAspect, false);
@@ -36,9 +36,9 @@ public class CharacterMap {
 
     }
 
-    public static synchronized CharacterMap getCharacterMap(Context context) {
+    public static synchronized CharacterMap getInstance() {
         if (cm == null) {
-            cm = new CharacterMap(context);
+            cm = new CharacterMap(MainActivity.getContext());
         }
         return cm;
     }

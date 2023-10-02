@@ -11,7 +11,8 @@ public enum ObjectType {
     ChangeField,
     Reverse,
     PushAway,
-    Arrow, BonusField
+    Arrow,
+    BonusField
 
 
 

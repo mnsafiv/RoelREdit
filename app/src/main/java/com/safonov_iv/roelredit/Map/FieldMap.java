@@ -17,7 +17,7 @@ import com.safonov_iv.roelredit.Repo.Data.MapDataGet;
 public class FieldMap extends AbstractMap {
 
     private final FieldPrototype field;
-    private EditMap editMap;
+    private final EditMap editMap;
     private final UpdateSelectCursor updateCursor;
 
     public FieldMap(Context context, Window window) {
@@ -32,9 +32,9 @@ public class FieldMap extends AbstractMap {
         Thread threadQuery = new Thread(mapDataGet);
         threadQuery.start();
 
-        MapPrototype mapPrototype = mapDataGet.getMap().getMapPrototype(setting);
+        MapPrototype mapPrototype = mapDataGet.getMap().getMapPrototype();
 
-        field = new MapField(setting, mapPrototype);
+        field = new MapField(mapPrototype);
         editMap = new EditMap(getContext(), setting,mapPrototype);
 
 

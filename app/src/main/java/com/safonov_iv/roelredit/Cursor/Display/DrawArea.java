@@ -16,9 +16,9 @@ public class DrawArea {
     private int y2;
 
     public DrawArea() {
-        final Camera camera = Camera.getCamera(Setting.getSetting());
-        final int currentHeight = Setting.getSetting().getCurrentHeight();
-        final int currentWidth = Setting.getSetting().getCurrentWidth();
+        final Camera camera = Camera.getInstance(Setting.getInstance());
+        final int currentHeight = Setting.getInstance().getCurrentHeight();
+        final int currentWidth = Setting.getInstance().getCurrentWidth();
         final double cameraResolution = camera.getCameraResolution();
         System.out.println();
 

@@ -22,7 +22,7 @@ public class FieldShow extends PanelEditProperties {
 
     @Override
     public boolean getAction(MapPrototype map) {
-        final MapValue mapValue = map.getMapValues().get(Setting.getSetting().getCamera().getCursor().getCursorCoordinate());
+        final MapValue mapValue = map.getMapValues().get(Setting.getInstance().getCamera().getCursor().getCursorCoordinate());
         final Map<BonusType, Double> bonus = mapValue.getBonus();
         System.out.println();
         return true;

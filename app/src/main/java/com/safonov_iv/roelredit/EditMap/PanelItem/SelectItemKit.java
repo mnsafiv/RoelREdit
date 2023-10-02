@@ -22,7 +22,7 @@ public class SelectItemKit extends PanelEditProperties {
         this.bitmapRect = rect;
         this.bitmap = items.stream().findAny().get().getBitmap();
         this.items = items;
-        cursor = Setting.getSetting().getCamera().getCursor();
+        cursor = Setting.getInstance().getCamera().getCursor();
     }
 
     @Override

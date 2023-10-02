@@ -2,7 +2,6 @@ package com.safonov_iv.roelredit.GenerateObject.Component;
 
 
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.CharacterModel;
-import com.safonov_iv.roelredit.GenerateObject.GenerateObjectAccess;
 import com.safonov_iv.roelredit.GenerateObject.Model.GroupTypeDifficult;
 import com.safonov_iv.roelredit.GenerateObject.Model.GroupTypeEnvironment;
 import com.safonov_iv.roelredit.GenerateObject.Model.GroupTypeGrade;
@@ -17,7 +16,7 @@ public class GroupComponent {
     public static MapGroupModel getMapGroupModel(GroupTypeDifficult difficult, GroupTypeEnvironment environment, GroupTypeGrade grade, BattleMapType mapType) {
 
 
-        final PersonComponent personComponent = GenerateObjectAccess.personComponent;
+        final PersonComponent personComponent = PersonComponent.getPersonComponent();
 
 
         List<CharacterModel> playerPersons = new ArrayList<>();

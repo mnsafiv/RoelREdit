@@ -1,5 +1,8 @@
 package com.safonov_iv.roelredit.GenerateObject.Model;
 
+import lombok.Getter;
+
+@Getter
 public class ModelProperties {
     private final int id;
     private final int id_bitmap;
@@ -11,21 +14,5 @@ public class ModelProperties {
         this.id_bitmap = id_bitmap;
         this.row = row;
         this.number = rowNumber;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getId_bitmap() {
-        return id_bitmap;
     }
 }

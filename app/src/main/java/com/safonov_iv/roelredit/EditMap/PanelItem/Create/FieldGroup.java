@@ -32,10 +32,10 @@ public class FieldGroup extends PanelEditProperties {
         paintBorderInfo = new Paint();
         paintBorderInfo.setColor(ContextCompat.getColor(context, R.color.ColorBorderStatus));
         paintStatusInfo = new Paint();
-        paintStatusInfo.setTextSize(Setting.getSetting().getCurrentWidth() / 100 * 2);
+        paintStatusInfo.setTextSize(Setting.getInstance().getCurrentWidth() / 100 * 2);
         paintStatusInfo.setColor(ContextCompat.getColor(context, R.color.ColorTextStatus));
 
-        camera = Setting.getSetting().getCamera();
+        camera = Setting.getInstance().getCamera();
 
 
     }
@@ -86,13 +86,13 @@ public class FieldGroup extends PanelEditProperties {
     public void reset() {
         if (addGroupMapValue != null) {
             addGroupMapValue.reset();
-            Setting.getSetting().getCamera().getPanelControl().removeActivePanel(addGroupMapValue);
+            Setting.getInstance().getCamera().getPanelControl().removeActivePanel(addGroupMapValue);
             addGroupMapValue = null;
         }
 
         if (editGroupMapValue != null) {
             editGroupMapValue.reset();
-            Setting.getSetting().getCamera().getPanelControl().removeActivePanel(editGroupMapValue);
+            Setting.getInstance().getCamera().getPanelControl().removeActivePanel(editGroupMapValue);
             editGroupMapValue = null;
         }
     }

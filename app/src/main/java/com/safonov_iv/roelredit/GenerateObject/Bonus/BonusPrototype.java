@@ -36,7 +36,7 @@ public class BonusPrototype {
     }
 
 
-    public static synchronized BonusPrototype getBonusPrototype() {
+    public static synchronized BonusPrototype getInstance() {
         if (bonusPrototype == null)
             bonusPrototype = new BonusPrototype();
         return bonusPrototype;

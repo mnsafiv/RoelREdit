@@ -23,8 +23,8 @@ public class PanelItemKit {
     }
 
     public void init() {
-        int shiftX = Setting.getSetting().getCurrentWidth() * Setting.getSetting().getCurrentHeight() / DefaultValue.RESOLUTION;
-        int shiftY = Setting.getSetting().getCurrentWidth() * Setting.getSetting().getCurrentHeight() / DefaultValue.RESOLUTION;
+        int shiftX = Setting.getInstance().getCurrentWidth() * Setting.getInstance().getCurrentHeight() / DefaultValue.RESOLUTION;
+        int shiftY = Setting.getInstance().getCurrentWidth() * Setting.getInstance().getCurrentHeight() / DefaultValue.RESOLUTION;
 
         AtomicInteger x = new AtomicInteger(1);
         AtomicInteger y = new AtomicInteger(1);

@@ -4,36 +4,39 @@ package com.safonov_iv.roelredit.GenerateObject.Model;
 import com.safonov_iv.roelredit.GenerateObject.Battle.PersonData.SkillArea;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
 public final class CharacterSkillArea {
-    private static Map<String, SkillArea> skillAreas;
+    private static CharacterSkillArea characterSkillArea;
+    private Map<String, SkillArea> skillAreas;
 
-
-    private static void init(){
-        skillAreas = new HashMap<>();
-        List<Boolean> area = Arrays.asList(true);
-
-        System.out.println();
-        skillAreas.put("base",new SkillArea(area));
-
-
-
-        area = Arrays.asList(true,true,true);
-        skillAreas.put("advance",new SkillArea(area));
-
-        area = Arrays.asList(false,true,true,true,true,true,true);
-        skillAreas.put("circle",new SkillArea(area));
+    public static CharacterSkillArea getInstance() {
+        if(characterSkillArea==null){
+            characterSkillArea=new CharacterSkillArea();
+        }
+        return characterSkillArea;
     }
 
-    public static SkillArea getSkillAreas(String key) {
-        if(skillAreas==null){
-            init();
-        }
+    public CharacterSkillArea() {
+        skillAreas = new HashMap<>();
 
+        skillAreas.put("base",new SkillArea(Collections.singletonList(true)));
+        skillAreas.put("advance",new SkillArea(Arrays.asList(true,true,true)));
+        skillAreas.put("circle",new SkillArea(Arrays.asList(false,true,true,true,true,true,true)));
+    }
+
+    private void init(){
+        skillAreas = new HashMap<>();
+
+        skillAreas.put("base",new SkillArea(Collections.singletonList(true)));
+        skillAreas.put("advance",new SkillArea(Arrays.asList(true,true,true)));
+        skillAreas.put("circle",new SkillArea(Arrays.asList(false,true,true,true,true,true,true)));
+    }
+
+    public SkillArea getSkillAreas(String key) {
         return skillAreas.get(key);
     }
 }

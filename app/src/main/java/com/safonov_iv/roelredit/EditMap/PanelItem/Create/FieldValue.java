@@ -24,7 +24,7 @@ public class FieldValue extends PanelEditProperties {
     @Override
     public boolean getAction(MapPrototype map) {
         System.out.println();
-        final Camera camera = Setting.getSetting().getCamera();
+        final Camera camera = Setting.getInstance().getCamera();
         if (camera.getCursor().getCursorCoordinate() > -1) {
             map.getMapValues().put(camera.getCursor().getCursorCoordinate(),
                     new MapValue(camera.getCursor().getCursorCoordinate(), weight, backGroundType, null));

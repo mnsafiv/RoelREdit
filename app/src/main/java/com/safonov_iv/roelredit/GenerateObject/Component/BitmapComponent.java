@@ -2,9 +2,12 @@ package com.safonov_iv.roelredit.GenerateObject.Component;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import lombok.Getter;
 
 
 public abstract class BitmapComponent {
+
+    @Getter
     protected int bitmapId;
     protected Context context;
 
@@ -23,9 +26,4 @@ public abstract class BitmapComponent {
     public abstract Bitmap resetToOriginalBitmapAndGetRef();
 
     public abstract void setBitmap(Bitmap bitmap);
-
-
-    public int getBitmapId() {
-        return bitmapId;
-    }
 }

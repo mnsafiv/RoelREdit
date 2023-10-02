@@ -7,11 +7,11 @@ import android.graphics.BitmapFactory;
 public class BitmapMulti extends BitmapComponent {
 
     private Bitmap bitmap;
-    private int startX;
-    private int startY;
-    private int endX;
-    private int endY;
-    private double distance=0;
+    private final int startX;
+    private final int startY;
+    private final int endX;
+    private final int endY;
+    private final double distance;
 
 
     public BitmapMulti(Context context, int bitmapId, int startX, int startY, int endX, int endY, double distance) {

@@ -57,11 +57,8 @@ public class CharacterSkill implements Cloneable, Serializable {
         this.multiplier = multiplier;
     }
 
-    public int getSkillCostPoint() {
-        return skillCostPoint;
-    }
 
-    public void setSkillCostTimes(int skillCostPoint) {
+    public void setSkillCostPoint(int skillCostPoint) {
         this.skillCostPoint = skillCostPoint;
     }
 

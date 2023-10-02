@@ -35,7 +35,7 @@ public class EditGroupMapValue implements PanelInt {
         paintBorderInfo = new Paint();
         paintBorderInfo.setColor(ContextCompat.getColor(context, R.color.ColorBorderStatus));
         paintStatusInfo = new Paint();
-        paintStatusInfo.setTextSize(Setting.getSetting().getCurrentWidth() / 100 * 2);
+        paintStatusInfo.setTextSize(Setting.getInstance().getCurrentWidth() / 100 * 2);
         paintStatusInfo.setColor(ContextCompat.getColor(context, R.color.ColorTextStatus));
 
         updateStatus();
@@ -53,8 +53,8 @@ public class EditGroupMapValue implements PanelInt {
         final ModelGroupPersons modelGroupPersons = mapValue.getMapGroup().getModelGroupPersons();
 
 
-        int screenX = Setting.getSetting().getCurrentWidth();
-        int screenY = Setting.getSetting().getCurrentHeight();
+        int screenX = Setting.getInstance().getCurrentWidth();
+        int screenY = Setting.getInstance().getCurrentHeight();
 
         int rectWidth = (int) (screenX * DefaultValue.editPanel.ROW_MULTIPLIER_SIZE_WIDTH_CHARACTER_EDIT);
         int rectHeight = (int) (screenY * DefaultValue.editPanel.ROW_MULTIPLIER_SIZE_HEIGHT_CHARACTER_EDIT);

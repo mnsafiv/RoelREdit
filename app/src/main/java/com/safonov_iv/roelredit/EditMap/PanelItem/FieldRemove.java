@@ -7,24 +7,24 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import com.safonov_iv.roelredit.Cursor.Display.CursorPosition;
 import com.safonov_iv.roelredit.EditMap.PanelItem.Create.PanelEditProperties;
-import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Common.Setting;
+import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 
 public class FieldRemove extends PanelEditProperties {
-    private Rect bitmapRect;
-    private Bitmap bitmap;
+    private final Rect bitmapRect;
+    private final Bitmap bitmap;
 
-    public FieldRemove(Context context, CursorPosition cursor, int id) {
+    public FieldRemove(Context context, int id) {
         super();
         bitmap = BitmapFactory.decodeResource(context.getResources(), id);
         bitmapRect = new Rect(0, 0, bitmap.getHeight(), bitmap.getWidth());
     }
 
     @Override
-    public boolean getAction(MapPrototype map) {
+    public boolean getAction() {
         final CursorPosition cursor = Setting.getInstance().getCamera().getCursor();
         if (cursor.getCursorCoordinate() > -1) {
-            map.getMapValues().remove(cursor.getCursorCoordinate());
+            MapPrototype.getInstance().getMapValues().remove(cursor.getCursorCoordinate());
             return true;
         }
 

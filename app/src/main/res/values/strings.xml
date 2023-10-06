@@ -2,4 +2,5 @@
     <string name="app_name">RoelREdit</string>
     <string name="generate_random">Generate random</string>
     <string name="get_from_server">Get from server</string>
+    <string name="test_draw_area">TEST DRAW AREA</string>
 </resources>

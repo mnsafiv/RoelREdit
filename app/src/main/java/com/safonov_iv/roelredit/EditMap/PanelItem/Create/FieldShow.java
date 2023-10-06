@@ -10,6 +10,7 @@ import com.safonov_iv.roelredit.R;
 import com.safonov_iv.roelredit.Common.Setting;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class FieldShow extends PanelEditProperties {
 
@@ -21,10 +22,9 @@ public class FieldShow extends PanelEditProperties {
     }
 
     @Override
-    public boolean getAction(MapPrototype map) {
-        final MapValue mapValue = map.getMapValues().get(Setting.getInstance().getCamera().getCursor().getCursorCoordinate());
-        final Map<BonusType, Double> bonus = mapValue.getBonus();
-        System.out.println();
+    public boolean getAction() {
+        final MapValue mapValue = MapPrototype.getInstance().getMapValues().get(Setting.getInstance().getCamera().getCursor().getCursorCoordinate());
+        final Map<BonusType, Double> bonus = Objects.requireNonNull(mapValue).getBonus();
         return true;
     }
 
@@ -33,17 +33,6 @@ public class FieldShow extends PanelEditProperties {
 
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, null, rect, null);
-
-    }
-
-
-    @Override
-    public void reset(Setting setting) {
-    }
-
-    @Override
-    public void update() {
-
 
     }
 

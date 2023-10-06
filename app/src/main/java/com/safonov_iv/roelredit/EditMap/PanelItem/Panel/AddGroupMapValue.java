@@ -14,7 +14,6 @@ import com.safonov_iv.roelredit.EditMap.ClickOnStatus.PanelInt;
 import com.safonov_iv.roelredit.EditMap.ClickOnStatus.StatusModelItemCharacterAdd;
 import com.safonov_iv.roelredit.GenerateObject.Model.CharacterBitmapModel;
 import com.safonov_iv.roelredit.GenerateObject.Model.ModelProperties;
-import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Map.Coordinate.MapValue;
 import com.safonov_iv.roelredit.R;
 import com.safonov_iv.roelredit.Common.Setting;
@@ -123,7 +122,7 @@ public class AddGroupMapValue implements PanelInt {
     }
 
     @Override
-    public boolean getAction(MapPrototype map) {
+    public boolean getAction() {
         return false;
     }
 

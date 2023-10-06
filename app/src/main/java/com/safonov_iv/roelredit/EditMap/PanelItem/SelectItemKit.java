@@ -6,8 +6,9 @@ import android.graphics.Rect;
 import com.safonov_iv.roelredit.Cursor.Display.CursorPosition;
 import com.safonov_iv.roelredit.EditMap.PanelItem.Create.PanelEditMap;
 import com.safonov_iv.roelredit.EditMap.PanelItem.Create.PanelEditProperties;
-import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Common.Setting;
+import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
+import lombok.Getter;
 
 import java.util.Set;
 
@@ -15,6 +16,7 @@ public class SelectItemKit extends PanelEditProperties {
     private final CursorPosition cursor;
     private Rect bitmapRect;
     private final Bitmap bitmap;
+    @Getter
     private final Set<PanelEditMap> items;
 
 
@@ -26,9 +28,9 @@ public class SelectItemKit extends PanelEditProperties {
     }
 
     @Override
-    public boolean getAction(MapPrototype map) {
+    public boolean getAction() {
         if (cursor.getCursorCoordinate() > -1) {
-            map.getMapValues().remove(cursor.getCursorCoordinate());
+            MapPrototype.getInstance().getMapValues().remove(cursor.getCursorCoordinate());
             return true;
         }
         return false;
@@ -40,9 +42,6 @@ public class SelectItemKit extends PanelEditProperties {
         this.bitmapRect=rect;
     }
 
-    public Set<PanelEditMap> getItems() {
-        return items;
-    }
 
     @Override
     public void draw(Canvas canvas) {

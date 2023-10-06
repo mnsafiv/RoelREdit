@@ -21,9 +21,10 @@ public class PrototypeGrid extends Prototype {
     public PrototypeGrid() {
         super();
         bitmaps = new HashMap<>();
+        cashedBitmaps=new HashMap<>();
+
         keys = new HashMap<>();
         path = Setting.getInstance().getGrid().getPath();
-
         initBitmapsValue(R.drawable.floor_001_6_4, "floor_001_6_4", 6, 4, 1);
         initBitmapsValue(R.drawable.water_001_6_4, "water_001_6_4", 6, 4, Integer.MAX_VALUE);
 

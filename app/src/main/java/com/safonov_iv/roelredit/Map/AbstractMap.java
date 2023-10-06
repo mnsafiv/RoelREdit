@@ -23,7 +23,6 @@ public abstract class AbstractMap extends SurfaceView implements SurfaceHolder.C
     protected Setting setting;
     protected CursorPosition cursor;
     private final Camera camera;
-    private final PanelControl panelControl;
 
 
     public AbstractMap(Context context) {
@@ -33,8 +32,6 @@ public abstract class AbstractMap extends SurfaceView implements SurfaceHolder.C
         this.camera = setting.getCamera();
         SurfaceHolder surfaceHolder = getHolder();
         gameLoop = new GameLoop(this, surfaceHolder);
-
-        panelControl = new PanelControl();
 
         Paint paint = new Paint();
         paint.setColor(ContextCompat.getColor(getContext(), R.color.ColorText));

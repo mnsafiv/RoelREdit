@@ -3,6 +3,7 @@ package com.safonov_iv.roelredit.Cursor.Layer;
 
 import android.graphics.*;
 import com.safonov_iv.roelredit.Cursor.Display.Camera;
+import org.jetbrains.annotations.NotNull;
 
 
 public class HexGrid extends GridDraw {
@@ -37,49 +38,6 @@ public class HexGrid extends GridDraw {
                 paint);
 
 
-//        Bitmap bitmap1 = BitmapFactory.decodeResource(setting.getContext().getResources(), R.drawable.field_yellow_grass_1);
-//        bitmap1 = Bitmap.createScaledBitmap(bitmap1, 200, 200, false);
-//        final int width = bitmap1.getWidth();
-//        final int height = bitmap1.getHeight();
-//        final Bitmap outputBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-//        final Path path = calculatePathCamera(
-//                setting.getCenterAreaPositionX(coordinate),
-//                setting.getCenterAreaPositionY(coordinate));
-//
-//        final Canvas canvas1 = new Canvas(outputBitmap);
-//        canvas1.clipPath(path);
-//        canvas1.drawBitmap(bitmap1, 0, 0, null);
-//
-//
-//        canvas.drawBitmap(outputBitmap,
-//                Utils.getStartXForRectObject(setting.getCenterAreaPositionX(coordinate), bitmap1.getWidth()),
-//                Utils.getStartYForRectObject(setting.getCenterAreaPositionY(coordinate), bitmap1.getHeight()),
-//                null);
-
-
-//        final Matrix m = new Matrix();
-//        final Path path = calculatePathCamera(
-//                setting.getCenterAreaPositionX(coordinate),
-//                setting.getCenterAreaPositionY(coordinate));
-//
-//
-//        String mText = "Test text \n text \n Test new line";
-//
-//        TextPaint mTextPaint = new TextPaint();
-//        mTextPaint.setTextSize(30);
-//        StaticLayout.Builder builder = StaticLayout.Builder.obtain(mText, 0, mText.length(), mTextPaint, canvas.getWidth());
-//        StaticLayout myStaticLayout = builder.build();
-//
-//        canvas.save();
-//
-//        int textX = 500;
-//        int textY = 500;
-//
-//        canvas.translate(textX, textY);
-//        myStaticLayout.draw(canvas);
-//        canvas.restore();
-
-
         //delete after
         Paint paintText = new Paint();
         float nextX = (float) camera.getDistanceToCameraX(
@@ -93,7 +51,7 @@ public class HexGrid extends GridDraw {
 
 
     @Override
-    public void draw(Canvas canvas, int coordinate, Bitmap bitmap, FieldSetting setting) {
+    public void draw(Canvas canvas, int coordinate, Bitmap bitmap, @NotNull FieldSetting setting) {
         Paint paint = new Paint();
         canvas.drawPath(
                 calculatePathCamera(
@@ -127,7 +85,6 @@ public class HexGrid extends GridDraw {
         hex.moveTo(
                 (float) (x + radius * Math.cos(start)),
                 (float) (y + radius * Math.sin(start)));
-
 
 
         for (int i = 1; i < 6; i++) {

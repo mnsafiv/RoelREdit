@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.safonov_iv.roelredit.Common.Utils;
 import com.safonov_iv.roelredit.Common.Setting;
+import com.safonov_iv.roelredit.Test.AnimationActivityMapTestDisplay;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,14 +27,12 @@ public class MainActivity extends AppCompatActivity {
         mInstance = this;
 
         Utils.setFullScreen(getWindow());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            Setting.getInstance().setDisplayBounds(getWindowManager().getCurrentWindowMetrics().getBounds());
-        }
 
         setContentView(R.layout.activity_main);
 
         Button button_start_level = findViewById(R.id.startGame);
         Button button_request = findViewById(R.id.generateRandom);
+        Button button_test_draw_area = findViewById(R.id.testDrawArea);
 
         button_start_level.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AnimationActivityMapGetFromServer.class);
@@ -44,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AnimationActivityMap.class);
             startActivity(intent);
         });
+
+        button_test_draw_area.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AnimationActivityMapTestDisplay.class);
+            startActivity(intent);
+        });
+
     }
 
 

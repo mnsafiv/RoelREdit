@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public abstract class Prototype {
     protected Map<String, BitmapComponent> bitmaps;
+    protected Map<String,Bitmap> cashedBitmaps;
     @Getter
     protected Map<String, BitmapConfig> keys;
     protected Camera camera;

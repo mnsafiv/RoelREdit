@@ -18,15 +18,16 @@ public class DefaultValue {
     public static final String OPPONENT_KEY = "opponentKey";
 
 
-    public static final GridType GRID_TYPE = GridType.HexHorizontal;
+    public static GridType GRID_TYPE;
 
 
-    public static final double MAX_UPS = 60;
+    public static final double MAX_UPS = 30;
     public static final int TIME_TO_FINISH = 5;
     public static final String SETTING_KEY = "setting";
     public static final int COMMON_MULTIPLIER_PROGRESS = 100;
     public static final int ELITE_MULTIPLIER_PROGRESS = 120;
     public static final int HERO_MULTIPLIER_PROGRESS = 200;
+    public static final int FIELD_CAPACITY = 10000;
 
 
     //panel edit/add head,end and row

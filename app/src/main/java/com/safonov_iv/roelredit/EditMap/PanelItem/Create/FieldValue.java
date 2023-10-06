@@ -2,15 +2,19 @@ package com.safonov_iv.roelredit.EditMap.PanelItem.Create;
 
 import android.graphics.Canvas;
 import com.safonov_iv.roelredit.Cursor.Display.Camera;
+import com.safonov_iv.roelredit.Cursor.Display.DisplayImpl;
 import com.safonov_iv.roelredit.GenerateObject.Component.BitmapComponent;
 import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Map.Coordinate.MapValue;
 import com.safonov_iv.roelredit.Common.Setting;
 
+import java.util.HashSet;
+import java.util.Map;
+
 public class FieldValue extends PanelEditProperties {
 
-    private String backGroundType;
-    private int weight;
+    private final String backGroundType;
+    private final int weight;
 
 
     public FieldValue(String backGroundType, BitmapComponent component) {
@@ -22,12 +26,21 @@ public class FieldValue extends PanelEditProperties {
 
 
     @Override
-    public boolean getAction(MapPrototype map) {
-        System.out.println();
+    public boolean getAction() {
         final Camera camera = Setting.getInstance().getCamera();
-        if (camera.getCursor().getCursorCoordinate() > -1) {
-            map.getMapValues().put(camera.getCursor().getCursorCoordinate(),
-                    new MapValue(camera.getCursor().getCursorCoordinate(), weight, backGroundType, null));
+        int coordinate = camera.getCursor().getCursorCoordinate();
+
+        if (coordinate > -1) {
+            MapValue mapValue = new MapValue(camera.getCursor().getCursorCoordinate(), weight, backGroundType, new HashSet<>());
+            MapValue targetMapValue = MapPrototype.getInstance().getMapValues().get(coordinate);
+            if (targetMapValue != null) {
+                targetMapValue.set(mapValue);
+            } else {
+                DisplayImpl.getInstance().addToDrawArea(mapValue);
+                DisplayImpl.getInstance().updateBoundsMap();
+            }
+
+
             return true;
         }
 

@@ -13,26 +13,12 @@ import java.util.Map;
 
 public class MapField implements FieldPrototype {
     private final FieldSetting fieldSetting;
-    private final Camera camera;
     private final MapPrototype mapPrototype;
-    private final GridDraw grid;
 
 
     public MapField(MapPrototype mapPrototype) {
         this.fieldSetting = Setting.getInstance().getFieldSetting();
-        this.camera = Setting.getInstance().getCamera();
-        this.grid = Setting.getInstance().getGrid();
         this.mapPrototype = mapPrototype;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        mapPrototype.getMapValues().forEach((key, value) ->
-                value.drawGrid(canvas, grid, fieldSetting));
-
-        mapPrototype.getMapValues().forEach((key, value) ->
-                value.drawDecorate(canvas,camera));
-
     }
 
 

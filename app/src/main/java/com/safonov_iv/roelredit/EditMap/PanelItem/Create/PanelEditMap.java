@@ -4,10 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import com.safonov_iv.roelredit.EditMap.ClickOnStatus.PanelInt;
-import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 
 public interface PanelEditMap extends PanelInt {
-    boolean getAction(MapPrototype map);
+    boolean getAction();
 
     void draw(Canvas canvas);
     void drawStatus(Canvas canvas);

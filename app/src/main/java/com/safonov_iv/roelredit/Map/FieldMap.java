@@ -8,37 +8,24 @@ import com.safonov_iv.roelredit.Common.Utils;
 import com.safonov_iv.roelredit.Cursor.Display.UpdateSelectCursor;
 import com.safonov_iv.roelredit.EditMap.EditMap;
 import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
-import com.safonov_iv.roelredit.Map.Decorate.FieldPrototype;
-import com.safonov_iv.roelredit.Map.Decorate.MapField;
 import com.safonov_iv.roelredit.Repo.Data.MapDataGet;
 
 
 @SuppressLint("ViewConstructor")
 public class FieldMap extends AbstractMap {
-
-    private final FieldPrototype field;
     private final EditMap editMap;
     private final UpdateSelectCursor updateCursor;
 
     public FieldMap(Context context, Window window) {
         super(context);
         Utils.setFullScreen(window);
-
         updateCursor = new UpdateSelectCursor(setting.getCamera().getCursor());
 
-
         MapDataGet mapDataGet = new MapDataGet();
-
         Thread threadQuery = new Thread(mapDataGet);
         threadQuery.start();
-
         MapPrototype mapPrototype = mapDataGet.getMap().getMapPrototype();
-
-        field = new MapField(mapPrototype);
-        editMap = new EditMap(getContext(), setting,mapPrototype);
-
-
-
+        editMap = new EditMap(getContext(), mapPrototype);
 
     }
 
@@ -59,7 +46,6 @@ public class FieldMap extends AbstractMap {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        field.draw(canvas);
         editMap.draw(canvas);
 
     }

@@ -1,18 +1,17 @@
 package com.safonov_iv.roelredit.GenerateObject.Component;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-public class _BitmapSingle extends BitmapComponent {
+public class BitmapSingle extends BitmapComponent {
 
     private Bitmap bitmap;
-    private int distance = 0;
+    private double distance = 0;
 
 
-    public _BitmapSingle(Context context, int bitmapId) {
-        super(context, bitmapId);
-        this.bitmap = BitmapFactory.decodeResource(context.getResources(), bitmapId);
+    public BitmapSingle(Bitmap bitmap, double distance) {
+        this.bitmap=bitmap;
+        this.distance = distance;
     }
 
 
@@ -23,12 +22,11 @@ public class _BitmapSingle extends BitmapComponent {
 
     @Override
     public Bitmap getCopyOriginalBitmap() {
-        return BitmapFactory.decodeResource(context.getResources(), bitmapId);
+        return bitmap;
     }
 
     @Override
     public Bitmap resetToOriginalBitmapAndGetRef() {
-        bitmap = BitmapFactory.decodeResource(context.getResources(), bitmapId);
         return bitmap;
     }
 

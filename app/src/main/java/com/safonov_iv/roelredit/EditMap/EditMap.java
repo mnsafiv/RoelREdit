@@ -20,14 +20,14 @@ public class EditMap {
     private final ResolutionIcon resolutionIcon;
 
 
-    public EditMap(Context context, Setting setting, MapPrototype mapPrototype) {
+    public EditMap(Context context, MapPrototype mapPrototype) {
         this.mapPrototype = mapPrototype;
         resolutionIcon = new ResolutionIcon(context, 2150, 50, 200, 30);
-        ComponentDataKits data = new ComponentDataKits(context, resolutionIcon,setting.getCamera());
+        ComponentDataKits data = new ComponentDataKits(context, resolutionIcon,Setting.getInstance().getCamera());
         panelKit = new PanelKit(data);
 
-        setting.getCamera().getPanelControl().addActivePanel(resolutionIcon);
-        saveMapIcon = new SaveMapIcon(context, setting);
+        Setting.getInstance().getCamera().getPanelControl().addActivePanel(resolutionIcon);
+        saveMapIcon = new SaveMapIcon(context, Setting.getInstance());
 
     }
 
@@ -45,6 +45,7 @@ public class EditMap {
             return true;
         }
 
+        //temp button - need fix
         if (saveMapIcon.getCollision(activeCursorX, activeCursorY)) {
             MapPrototypeDto mapPrototypeDto = new MapPrototypeDto();
             mapPrototypeDto.updateMapPrototype(mapPrototype);
@@ -54,7 +55,7 @@ public class EditMap {
             return true;
         }
         //check collision with display
-        return panelKit.getAction(mapPrototype);
+        return panelKit.getAction();
     }
 
     public void update() {

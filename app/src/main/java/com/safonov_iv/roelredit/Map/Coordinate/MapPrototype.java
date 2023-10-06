@@ -2,28 +2,28 @@ package com.safonov_iv.roelredit.Map.Coordinate;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Map;
 
 @Getter
 public class MapPrototype {
+    private static volatile MapPrototype mapPrototype;
+    @Setter
     private Long mapNameId;
+    @Setter
     private String mapName;
-    private Map<Integer,MapValue> mapValues;
+    @Setter
+    private Map<Integer, MapValue> mapValues;
 
-    public MapPrototype() {
+    private MapPrototype() {
     }
 
-
-    public MapPrototype(Long mapNameId, String mapName, Map<Integer, MapValue> mapValues) {
-        this.mapNameId = mapNameId;
-        this.mapName = mapName;
-        this.mapValues = mapValues;
-    }
-
-    public MapPrototype(String mapName, Map<Integer, MapValue> mapValues) {
-        this.mapName = mapName;
-        this.mapValues = mapValues;
+    public synchronized static MapPrototype getInstance() {
+        if (mapPrototype == null) {
+            mapPrototype = new MapPrototype();
+        }
+        return mapPrototype;
     }
 
 }

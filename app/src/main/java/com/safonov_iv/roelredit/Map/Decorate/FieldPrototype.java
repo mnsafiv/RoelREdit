@@ -7,8 +7,6 @@ import com.safonov_iv.roelredit.Map.Coordinate.MapValue;
 import java.util.Map;
 
 public interface FieldPrototype {
-
-    void draw(Canvas canvas);
     MapPrototype getMapPrototype();
     Map<Integer, MapValue> getMap();
     MapPrototype getRefMap();

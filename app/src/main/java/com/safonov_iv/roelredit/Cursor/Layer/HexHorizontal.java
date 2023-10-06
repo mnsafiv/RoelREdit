@@ -21,8 +21,6 @@ public class HexHorizontal extends FieldSetting {
 
         double distance = Utils.getDistanceBetweenTwoPoints(centerX, centerY, positionX, positionY);
 
-        System.out.println();
-
         if (distance < gridSetting.getHeight()) {
             return getCoordinate(supposedAreaX, supposedAreaY);
         }
@@ -30,9 +28,12 @@ public class HexHorizontal extends FieldSetting {
         boolean isRightSide = positionX > centerX;
 
         if (isRightSide) {
+            if (supposedAreaY == 0) supposedAreaY++;
             return getCoordinate(supposedAreaX, supposedAreaY - 1);
 
         } else {
+            if (supposedAreaX == 0) supposedAreaX++;
+            if (supposedAreaY == 0) supposedAreaY++;
             return getCoordinate(supposedAreaX - 1, supposedAreaY - 1);
         }
 
@@ -55,17 +56,12 @@ public class HexHorizontal extends FieldSetting {
         }
 
 
-
-        if(distance>gridSetting.getSize()/2){
-            return getNextCoordinate(supposedAreaX,supposedAreaY, positionX,centerX);
+        if (distance > gridSetting.getSize() / 2) {
+            return getNextCoordinate(supposedAreaX, supposedAreaY, positionX, centerX);
         }
 
 
-
-
-        return calculateCoordinate(supposedAreaX,supposedAreaY,centerX,centerY,distance,positionX,positionY);
-
-
+        return calculateCoordinate(supposedAreaX, supposedAreaY, centerX, centerY, distance, positionX, positionY);
 
 
     }
@@ -74,9 +70,8 @@ public class HexHorizontal extends FieldSetting {
 
         //control h/sin(x)
 
-        return getNextCoordinate(supposedAreaX,supposedAreaY, positionX,centerX);
+        return getNextCoordinate(supposedAreaX, supposedAreaY, positionX, centerX);
     }
-
 
 
     private int getNextCoordinate(int supposedAreaX, int supposedAreaY, double positionX, double centerX) {
@@ -85,6 +80,7 @@ public class HexHorizontal extends FieldSetting {
         if (isRightSide) {
             return getCoordinate(supposedAreaX, supposedAreaY + 1);
         } else {
+            if (supposedAreaX == 0) supposedAreaX++;
             return getCoordinate(supposedAreaX - 1, supposedAreaY + 1);
         }
 
@@ -109,10 +105,10 @@ public class HexHorizontal extends FieldSetting {
         int sectorAreaX = getSectorAreaX(positionX);
         int sectorAreaY = getSectorAreaY(positionY);
 
+        System.out.println();
+
         //sector 4*6
         int sectorY = (sectorAreaY + 1) % 6;
-
-
 
 
         if (sectorY == 2 || sectorY == 3) {
@@ -126,8 +122,7 @@ public class HexHorizontal extends FieldSetting {
 
         if (sectorY == 1) {
             return topSideArea(positionX, positionY, sectorAreaX, sectorAreaY);
-        }
-        else {
+        } else {
             //sectorY == 4
             return bottomSideArea(positionX, positionY, sectorAreaX, sectorAreaY);
         }

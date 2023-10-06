@@ -26,8 +26,8 @@ public class FieldDecor extends PanelEditProperties {
 
 
     @Override
-    public boolean getAction(MapPrototype map) {
-        final MapValue mapValue = map.getMapValues().get(camera.getCursor().getCursorCoordinate());
+    public boolean getAction() {
+        final MapValue mapValue = MapPrototype.getInstance().getMapValues().get(camera.getCursor().getCursorCoordinate());
         if (mapValue != null) {
             mapValue.setId(null);
             IconCoordinate iconCoordinateNew = new IconCoordinate(

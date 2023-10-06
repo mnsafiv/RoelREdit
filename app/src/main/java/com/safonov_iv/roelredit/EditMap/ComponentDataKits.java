@@ -43,7 +43,7 @@ public class ComponentDataKits {
         Set<PanelEditMap> curIcons = new LinkedHashSet<>();
 //        curIcons.add(new FieldGroup(context));
         curIcons.add(new FieldShow(context));
-        curIcons.add(new FieldRemove(context, camera.getCursor(), R.drawable.remove_edit));
+        curIcons.add(new FieldRemove(context, R.drawable.remove_edit));
         panelItemKit.add("EditGroup", curIcons);
 
         panelItemKit.init();

@@ -5,15 +5,18 @@ import android.graphics.BitmapFactory;
 import com.safonov_iv.roelredit.MainActivity;
 import com.safonov_iv.roelredit.R;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
-public class PrototypeDecor extends Prototype{
+public class PrototypeDecor extends Prototype {
     private volatile static PrototypeDecor prototypeDecor;
+    private static final DecimalFormat df = new DecimalFormat("_0.00");
 
 
     private PrototypeDecor() {
         super();
         bitmaps = new HashMap<>();
+        cashedBitmaps=new HashMap<>();
         keys = new HashMap<>();
 
         initBitmapsValue(R.drawable.tree_002_4_2, "tree_002_4_2", 4, 2, 0);
@@ -24,9 +27,8 @@ public class PrototypeDecor extends Prototype{
 
 
     public static synchronized PrototypeDecor getInstance() {
-
-        if(prototypeDecor==null){
-            prototypeDecor=new PrototypeDecor();
+        if (prototypeDecor == null) {
+            prototypeDecor = new PrototypeDecor();
         }
         return prototypeDecor;
     }
@@ -51,12 +53,13 @@ public class PrototypeDecor extends Prototype{
 
 
     public Bitmap getBackGroundBitmap(String item, double resolution) {
-        final Bitmap bitmap = Objects.requireNonNull(bitmaps.get(item)).getBitmap();
-        System.out.println();
-        return Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * resolution), (int) (bitmap.getHeight() * resolution), false);
+        String key = item + df.format(resolution);
+        return cashedBitmaps.computeIfAbsent(key, r -> {
+            Bitmap newBitmap = Objects.requireNonNull(bitmaps.get(item)).getBitmap();Bitmap scaledBitmap = Bitmap.createScaledBitmap(newBitmap, (int) (newBitmap.getWidth() * resolution), (int) (newBitmap.getHeight() * resolution), false);
+            cashedBitmaps.put(key,scaledBitmap);
+            return scaledBitmap;
+        });
     }
-
-
 
 
 }

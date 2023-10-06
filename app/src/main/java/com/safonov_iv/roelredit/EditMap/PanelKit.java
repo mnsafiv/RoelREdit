@@ -2,7 +2,6 @@ package com.safonov_iv.roelredit.EditMap;
 
 import android.graphics.Canvas;
 import com.safonov_iv.roelredit.EditMap.PanelItem.Create.PanelEditMap;
-import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import org.jetbrains.annotations.NotNull;
 
 public class PanelKit {
@@ -17,11 +16,11 @@ public class PanelKit {
     }
 
 
-    public boolean getAction(MapPrototype map) {
+    public boolean getAction() {
         if (active == null) {
             return false;
         }
-        return active.getAction(map);
+        return active.getAction();
     }
 
 

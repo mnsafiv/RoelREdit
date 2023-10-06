@@ -5,7 +5,7 @@ import lombok.Getter;
 
 public class GridSetting {
     @Getter
-    private final int capacity = 1000;
+    private final int capacity = DefaultValue.FIELD_CAPACITY;
     @Getter
     private final float size;
     private final float sizeMargin;

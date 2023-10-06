@@ -12,6 +12,8 @@ import com.safonov_iv.roelredit.Cursor.Layer.FieldSetting;
 
 public class Utils {
 
+
+
     public static void setFullScreen(Window window) {
         window.getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -24,6 +26,9 @@ public class Utils {
 
         );
     }
+
+
+
 
     public static int setColorAlpha(int color, byte alpha) {
         return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));

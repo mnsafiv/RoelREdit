@@ -3,10 +3,11 @@ package com.safonov_iv.roelredit.Map.Coordinate;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.safonov_iv.roelredit.Common.Setting;
+import com.safonov_iv.roelredit.Cursor.Display.Camera;
 import com.safonov_iv.roelredit.GenerateObject.Bonus.BonusPrototype;
 import com.safonov_iv.roelredit.GenerateObject.Bonus.BonusType;
 import com.safonov_iv.roelredit.Common.Utils;
-import com.safonov_iv.roelredit.Cursor.Display.Camera;
 import com.safonov_iv.roelredit.GenerateObject.Component.PrototypeDecor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,8 @@ import java.util.Map;
 @Getter
 @Setter
 public class IconCoordinate implements Bonus {
+    private final PrototypeDecor prototypeDecor;
+    private final Camera camera;
     private Long id;
     private double positionX;
     private double positionY;
@@ -42,14 +45,16 @@ public class IconCoordinate implements Bonus {
         this.resolution = resolution;
         this.iconType = iconType;
         this.bonus= BonusPrototype.getInstance().getBonus(key).getBonusItems();
+        this.prototypeDecor =PrototypeDecor.getInstance();
+        this.camera= Setting.getInstance().getCamera();
 
         this.mapValueOwner = mapValueOwner;
     }
 
 
-    public void draw(Canvas canvas, Camera camera) {
+    public void draw(Canvas canvas) {
 
-        Bitmap bitmap = PrototypeDecor.getInstance().getBackGroundBitmap(iconType, resolution);
+        Bitmap bitmap = prototypeDecor.getBackGroundBitmap(iconType, resolution);
 
         if (alpha != -1) {
             bitmap = Utils.changeColor(bitmap, alpha);
@@ -60,6 +65,13 @@ public class IconCoordinate implements Bonus {
                 (float) camera.getCenterBitmapToCameraX(bitmap, mapValueOwner.getCenterX() + positionX),
                 (float) camera.getCenterBitmapToCameraY(bitmap, mapValueOwner.getCenterY() + positionY),
                 null);
+    }
+
+    public double getAbsolutePositionX(){
+        return positionX+ mapValueOwner.getCenterX();
+    }
+    public double getAbsolutePositionY(){
+        return positionY+ mapValueOwner.getCenterY();
     }
 
     public void setAlpha(byte alpha) {

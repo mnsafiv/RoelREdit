@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import androidx.core.content.ContextCompat;
 import com.safonov_iv.roelredit.EditMap.ClickOnStatus.PanelInt;
-import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.R;
 
 public class ResolutionIcon implements PanelInt {
@@ -97,7 +96,7 @@ public class ResolutionIcon implements PanelInt {
     }
 
     @Override
-    public boolean getAction(MapPrototype map) {
+    public boolean getAction() {
         return false;
     }
 

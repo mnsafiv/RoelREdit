@@ -2,9 +2,11 @@ package com.safonov_iv.roelredit.Cursor.Display;
 
 
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import com.safonov_iv.roelredit.Common.Utils;
 import com.safonov_iv.roelredit.Common.Setting;
 import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -28,6 +30,10 @@ public final class Camera {
 
     @Getter
     private final PanelControl panelControl;
+    @Setter
+    private Display display;
+
+    private Rect displayBounds;
 
 
     private Camera(Setting setting) {
@@ -39,9 +45,9 @@ public final class Camera {
         this.panelControl = new PanelControl();
     }
 
-    public static Camera getInstance(Setting setting) {
-        if(camera==null){
-            camera=new Camera(setting);
+    public static synchronized Camera getInstance(Setting setting) {
+        if (camera == null) {
+            camera = new Camera(setting);
         }
         return camera;
     }
@@ -52,7 +58,6 @@ public final class Camera {
         distance = 0;
         startX = cameraX;
         startY = cameraY;
-
 
 
         if (checkCollision(x, y)) {
@@ -106,16 +111,11 @@ public final class Camera {
         }
 
 
-
         moveX = x;
         moveY = y;
 
 
-
-
-
         panelControl.shift(distanceX, distanceY);
-
 
 
     }
@@ -130,13 +130,22 @@ public final class Camera {
             return;
         }
 
-
         cameraX = (float) (cameraX - moveX + x);
         cameraY = (float) (cameraY - moveY + y);
 
+        cameraX = Math.min(-displayBounds.left, cameraX);
+        cameraX = Math.max(-displayBounds.right, cameraX);
+        cameraY = Math.min(-displayBounds.top, cameraY);
+        cameraY = Math.max(-displayBounds.bottom, cameraY);
+
         moveX = x;
         moveY = y;
+
         state = CameraState.isMove;
+    }
+
+    public void setDisplayBounds(Rect displayBounds) {
+        this.displayBounds = displayBounds;
     }
 
     public void setIsUp() {
@@ -163,8 +172,16 @@ public final class Camera {
 
 
     public void update() {
-        positionCameraX = cameraX;
-        positionCameraY = cameraY;
+        //need check if moved
+        if (positionCameraX != cameraX || positionCameraY != cameraY) {
+
+            positionCameraX = cameraX;
+            positionCameraY = cameraY;
+
+
+            display.updateDrawArea();
+        }
+
 
     }
 

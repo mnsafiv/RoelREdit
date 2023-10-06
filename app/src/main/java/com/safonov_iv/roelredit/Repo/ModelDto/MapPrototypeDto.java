@@ -23,7 +23,11 @@ public class MapPrototypeDto {
             t.getIconCoordinates().forEach(n -> n.setMapValueOwner(t));
             mapValues.put(t.getCoordinate(), t);
         });
-        return new MapPrototype(mapNameId, mapName, mapValues);
+        MapPrototype mapPrototype = MapPrototype.getInstance();
+        mapPrototype.setMapValues(mapValues);
+        mapPrototype.setMapName(mapName);
+        mapPrototype.setMapNameId(mapNameId);
+        return mapPrototype;
     }
 
     public void updateMapPrototype(MapPrototype mapPrototype) {

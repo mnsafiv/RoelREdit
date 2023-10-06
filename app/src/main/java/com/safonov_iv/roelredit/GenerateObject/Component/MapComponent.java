@@ -1,5 +1,6 @@
 package com.safonov_iv.roelredit.GenerateObject.Component;
 
+import com.safonov_iv.roelredit.Common.DefaultValue;
 import com.safonov_iv.roelredit.GenerateObject.Model.MapGroupModel;
 import com.safonov_iv.roelredit.Map.Coordinate.Enum.BattleMapType;
 import com.safonov_iv.roelredit.Map.Coordinate.Enum.MapType;
@@ -15,8 +16,8 @@ public class MapComponent {
     private static final Random random = new Random();
 
     public static Map<Integer, MapValue> getMap(MapType mapType, Setting setting) {
-        int sizeAreaX = 10;
-        int sizeAreaY = 10;
+        int sizeAreaX = 20;
+        int sizeAreaY = 20;
         Map<Integer, MapValue> map = new HashMap<>();
         Random random = new Random();
 
@@ -25,20 +26,24 @@ public class MapComponent {
 
                 for (int i = 0; i < sizeAreaX; i++) {
                     for (int j = 0; j < sizeAreaY; j++) {
-                        int key = i + j * 1000;
+                        int key = i + j * DefaultValue.FIELD_CAPACITY;
 
-                        final int value = random.nextInt(5) - 2;
+                        final int value = random.nextInt(5) - 1;
 
                         Set<IconCoordinate> icons = new HashSet<>();
 
 
                         final BitmapConfig bitmapConfig = getRandomBitmapConfig();
                         final String randomBackGroundType = getRandomBackGround(bitmapConfig);
-                        MapValue mapValue = new MapValue(key, 1, bitmapConfig.getKey(), randomBackGroundType, icons);
+                        MapValue mapValue = new MapValue(key, 1, bitmapConfig.getKey(), randomBackGroundType);
 
                         for (int k = 0; k < value; k++) {
                             icons.add(getRandomIconCoordinate(setting, mapValue));
                         }
+
+                        mapValue.add(icons);
+
+
 
                         final int modelGroupCounter = random.nextInt(2);
                         if (modelGroupCounter == 1) {
@@ -57,7 +62,7 @@ public class MapComponent {
                 return map;
 
         }
-        return null;
+        return new HashMap<>();
     }
 
     private static String getRandomBackGround(BitmapConfig bitmapConfig) {

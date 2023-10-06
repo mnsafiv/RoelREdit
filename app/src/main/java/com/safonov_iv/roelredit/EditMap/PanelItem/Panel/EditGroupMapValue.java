@@ -13,7 +13,6 @@ import com.safonov_iv.roelredit.EditMap.ClickOnStatus.PanelInt;
 import com.safonov_iv.roelredit.EditMap.ClickOnStatus.StatusModelItemCharacterEdit;
 import com.safonov_iv.roelredit.GenerateObject.Model.MapGroupModel;
 import com.safonov_iv.roelredit.GenerateObject.Model.ModelGroupPersons;
-import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Map.Coordinate.MapValue;
 import com.safonov_iv.roelredit.R;
 import com.safonov_iv.roelredit.Common.Setting;
@@ -114,7 +113,7 @@ public class EditGroupMapValue implements PanelInt {
     }
 
     @Override
-    public boolean getAction(MapPrototype map) {
+    public boolean getAction() {
         return false;
     }
 

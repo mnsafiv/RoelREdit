@@ -15,6 +15,7 @@ public class MapData {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            assert response.body() != null;
             return response.body().string();
         }
         catch (IOException e){
@@ -31,6 +32,7 @@ public class MapData {
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
+            assert response.body() != null;
             return response.body().string();
         }
         catch (IOException e){

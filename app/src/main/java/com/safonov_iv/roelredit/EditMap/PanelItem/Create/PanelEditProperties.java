@@ -3,7 +3,6 @@ package com.safonov_iv.roelredit.EditMap.PanelItem.Create;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Common.Setting;
 
 
@@ -58,7 +57,7 @@ public abstract class PanelEditProperties implements PanelEditMap{
 
 
     @Override
-    public boolean getAction(MapPrototype map) {
+    public boolean getAction() {
         return false;
     }
 

@@ -2,7 +2,6 @@ package com.safonov_iv.roelredit.EditMap.PanelItem.Create;
 
 import android.content.Context;
 import android.graphics.*;
-import androidx.core.content.ContextCompat;
 import com.safonov_iv.roelredit.Cursor.Display.Camera;
 import com.safonov_iv.roelredit.EditMap.PanelItem.Panel.AddGroupMapValue;
 import com.safonov_iv.roelredit.EditMap.PanelItem.Panel.EditGroupMapValue;
@@ -10,6 +9,7 @@ import com.safonov_iv.roelredit.Map.Coordinate.MapPrototype;
 import com.safonov_iv.roelredit.Map.Coordinate.MapValue;
 import com.safonov_iv.roelredit.R;
 import com.safonov_iv.roelredit.Common.Setting;
+import org.jetbrains.annotations.NotNull;
 
 public class FieldGroup extends PanelEditProperties {
 
@@ -20,20 +20,11 @@ public class FieldGroup extends PanelEditProperties {
     private EditGroupMapValue editGroupMapValue;
     private AddGroupMapValue addGroupMapValue;
 
-    private final Paint paintBorderInfo;
-    private final Paint paintStatusInfo;
 
-
-    public FieldGroup(Context context) {
+    public FieldGroup(@NotNull Context context) {
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.icon_show_group);
         this.context = context;
         bitmapRect = new Rect(0, 0, bitmap.getHeight(), bitmap.getWidth());
-
-        paintBorderInfo = new Paint();
-        paintBorderInfo.setColor(ContextCompat.getColor(context, R.color.ColorBorderStatus));
-        paintStatusInfo = new Paint();
-        paintStatusInfo.setTextSize(Setting.getInstance().getCurrentWidth() / 100 * 2);
-        paintStatusInfo.setColor(ContextCompat.getColor(context, R.color.ColorTextStatus));
 
         camera = Setting.getInstance().getCamera();
 
@@ -41,9 +32,9 @@ public class FieldGroup extends PanelEditProperties {
     }
 
     @Override
-    public boolean getAction(MapPrototype map) {
+    public boolean getAction() {
         reset();
-        final MapValue mapValue = map.getMapValues().get(camera.getCursor().getCursorCoordinate());
+        final MapValue mapValue = MapPrototype.getInstance().getMapValues().get(camera.getCursor().getCursorCoordinate());
 
         if (mapValue != null) {
             editGroupMapValue = new EditGroupMapValue(context, mapValue);
